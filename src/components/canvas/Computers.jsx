@@ -18,6 +18,7 @@ const Computers = ({ isMobile }) => {
         castShadow
         shadow-mapSize={1024}
       />
+      {/* glare light or point type light effect  when the monitor moves*/}
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
@@ -58,13 +59,15 @@ const ComputersCanvas = () => {
       frameloop='demand'
       shadows
       dpr={[1, 2]}
+      // fov=field of view(how wide the view is; position is x, y ,z directions)
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
     >
+      {/* suspense=allows us to have a loader while our model is loading */}
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}//not to rotate it all the round way around; we can rotate it on specific angles 
           minPolarAngle={Math.PI / 2}
         />
         <Computers isMobile={isMobile} />
